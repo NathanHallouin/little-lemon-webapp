@@ -3,13 +3,78 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-forest-50:  #F2F3F2;
+  --color-forest-100: #DCE1DF;
+  --color-forest-200: #B7C3C0;
+  --color-forest-300: #93A49F;
+  --color-forest-400: #6E867F;
+  --color-forest-500: #495E57; /* Base */
+  --color-forest-600: #3F514B;
+  --color-forest-700: #33403A;
+  --color-forest-800: #252C27;
+  --color-forest-900: #141816;
+  --color-forest-950: #0D0F0D;
+
+  --color-sunshine-50:  #fdfae7;
+  --color-sunshine-100: #fcf5d0;
+  --color-sunshine-200: #fbf0b8;
+  --color-sunshine-300: #fae997;
+  --color-sunshine-400: #f9e584;
+  --color-sunshine-500: #f4ce14; /* Base #F4CE14 */
+  --color-sunshine-600: #f6d639;
+  --color-sunshine-700: #f4bb14;
+  --color-sunshine-800: #f4a914;
+  --color-sunshine-900: #f49614;
+  --color-sunshine-950: #f42214;
+
+  --color-peach-50:  #fff4ee;
+  --color-peach-100: #fde1d8;
+  --color-peach-200: #fac3b2;
+  --color-peach-300: #f6a48b;
+  --color-peach-400: #f2896b;
+  --color-peach-500: #ee9972; /* Base #EE9972 */
+  --color-peach-600: #e47f5c;
+  --color-peach-700: #cd6748;
+  --color-peach-800: #b85135;
+  --color-peach-900: #8f3a24;
+  --color-peach-950: #6a2819;
+
+  --color-peach-yellow-50:  #ffffff;
+  --color-peach-yellow-100: #fefbf6;
+  --color-peach-yellow-200: #fdf3e5;
+  --color-peach-yellow-300: #fdecd5;
+  --color-peach-yellow-400: #fce8cc;
+  --color-peach-yellow-500: #fbdaab; /* Base #FBDAAB */
+  --color-peach-yellow-600: #e1c499;
+  --color-peach-yellow-700: #c8ae88;
+  --color-peach-yellow-800: #af9877;
+  --color-peach-yellow-900: #968266;
+  --color-peach-yellow-950: #7d6d55;
 }
 
-html,
-body {
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+/* Styles pour les animations d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
+}
+
+/* Amélioration de l'accessibilité pour les liens externes */
+a[href^="http"]:not([href*="littlelemon.com"])::after {
+  content: " (lien externe)";
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Amélioration de l'accessibilité pour les liens qui ouvrent dans un nouvel onglet */
+a[target="_blank"]::after {
+  content: " (s'ouvre dans un nouvel onglet)";
+  font-size: 0.875rem;
+  color: #6b7280;
 }

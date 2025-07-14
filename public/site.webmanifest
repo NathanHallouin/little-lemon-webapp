@@ -1,0 +1,28 @@
+{
+    "name": "Little Lemon Restaurant",
+    "short_name": "Little Lemon",
+    "description": "Restaurant méditerranéen authentique à Orléans",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#495e57",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/logo.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg"
+        },
+        {
+            "src": "/logo.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ],
+    "categories": [
+        "food",
+        "restaurant"
+    ],
+    "lang": "fr",
+    "dir": "ltr"
+}
