@@ -28,11 +28,26 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  // Favicon et icônes
   { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-  { rel: "apple-touch-icon", sizes: "180x180", href: "/logo.jpg" },
-  { rel: "icon", type: "image/png", sizes: "32x32", href: "/logo.jpg" },
-  { rel: "icon", type: "image/png", sizes: "16x16", href: "/logo.jpg" },
-  { rel: "manifest", href: "/site.webmanifest" },
+  { rel: "icon", type: "image/png", sizes: "16x16", href: "/icons/icon-16x16.png" },
+  { rel: "icon", type: "image/png", sizes: "32x32", href: "/icons/icon-32x32.png" },
+  { rel: "icon", type: "image/png", sizes: "96x96", href: "/icons/icon-96x96.png" },
+  { rel: "icon", type: "image/png", sizes: "192x192", href: "/icons/icon-192x192.png" },
+  { rel: "icon", type: "image/png", sizes: "512x512", href: "/icons/icon-512x512.png" },
+  
+  // Apple Touch Icons
+  { rel: "apple-touch-icon", sizes: "72x72", href: "/icons/icon-72x72.png" },
+  { rel: "apple-touch-icon", sizes: "96x96", href: "/icons/icon-96x96.png" },
+  { rel: "apple-touch-icon", sizes: "128x128", href: "/icons/icon-128x128.png" },
+  { rel: "apple-touch-icon", sizes: "144x144", href: "/icons/icon-144x144.png" },
+  { rel: "apple-touch-icon", sizes: "152x152", href: "/icons/icon-152x152.png" },
+  { rel: "apple-touch-icon", sizes: "192x192", href: "/icons/icon-192x192.png" },
+  { rel: "apple-touch-icon", sizes: "384x384", href: "/icons/icon-384x384.png" },
+  { rel: "apple-touch-icon", sizes: "512x512", href: "/icons/icon-512x512.png" },
+  
+  // Manifest PWA
+  { rel: "manifest", href: "/manifest.json" },
 ];
 
 /**
@@ -71,6 +86,8 @@ export function meta({}: Route.MetaArgs) {
     // Additional Meta - Global
     { name: "theme-color", content: "#495e57" },
     { name: "msapplication-TileColor", content: "#495e57" },
+    { name: "msapplication-TileImage", content: "/icons/icon-144x144.png" },
+    { name: "msapplication-config", content: "/browserconfig.xml" },
     { name: "apple-mobile-web-app-capable", content: "yes" },
     { name: "apple-mobile-web-app-status-bar-style", content: "default" },
   ];
