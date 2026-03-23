@@ -1,92 +1,99 @@
-import React from 'react';
+import type { ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import { Heart, Sparkles, Handshake } from 'lucide-react';
+import FadeInView from '../ui/FadeInView';
+import StaggerContainer, { StaggerItem } from '../ui/StaggerContainer';
 
-/**
- * Team section component displaying restaurant staff and company values
- * @returns Team section with staff profiles and company values
- */
-const TeamSection: React.FC = () => {
+const TeamSection = () => {
   const teamMembers = [
     {
       name: "Mario Rossi",
-      role: "Owner Chef",
+      role: "Executive Chef & Owner",
       description: "Expert in Mediterranean cuisine with over 25 years of experience",
-      image: "./gourmet.jpg"
+      image: "./gourmet.jpg",
     },
     {
       name: "Adrian Rossi",
       role: "Pastry Chef",
       description: "Specialist in traditional desserts and modern creations",
-      image: "./bruschetta1.jpg"
+      image: "./bruschetta1.jpg",
     },
     {
       name: "Sophie Martin",
       role: "Service Manager",
       description: "Ensures exceptional customer experience for 15 years",
-      image: "./salad.jpg"
-    }
+      image: "./salad.jpg",
+    },
+  ];
+
+  const values: { title: string; description: string; icon: ReactNode }[] = [
+    { title: "Passion", description: "Our love for cooking is reflected in every dish", icon: <Heart className="w-8 h-8 text-secondary-500" /> },
+    { title: "Quality", description: "We select only the finest ingredients", icon: <Sparkles className="w-8 h-8 text-accent-400" /> },
+    { title: "Family", description: "Our team is like a family, united by passion", icon: <Handshake className="w-8 h-8 text-primary-300" /> },
   ];
 
   return (
-    <section className="w-full bg-gray-50 py-16">
-      <div className="w-11/12 max-w-screen-xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-forest-500 mb-4">Our Team</h2>
-          <div className="w-24 h-1 bg-sunshine-500 mx-auto mb-6"></div>
-          <p className="text-gray-700 max-w-2xl mx-auto">
-            Meet the passionate people who make Little Lemon a unique culinary experience
+    <section className="py-24 bg-primary-900 text-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <FadeInView direction="up" className="text-center mb-16">
+          <span className="inline-block text-accent-400 text-sm font-semibold uppercase tracking-wider mb-3">
+            Meet the Team
+          </span>
+          <h2 className="font-display text-4xl lg:text-5xl font-bold mb-4">The People Behind Little Lemon</h2>
+          <p className="text-primary-200 max-w-2xl mx-auto text-lg">
+            Meet the passionate people who make every meal a memorable experience
           </p>
-        </div>
+        </FadeInView>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="relative h-64">
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-forest-500 mb-2">{member.name}</h3>
-                <p className="text-sunshine-500 font-medium mb-3">{member.role}</p>
-                <p className="text-gray-600 text-sm leading-relaxed">{member.description}</p>
-              </div>
-            </div>
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20" staggerDelay={0.1}>
+          {teamMembers.map((member) => (
+            <StaggerItem key={member.name}>
+              <motion.div
+                className="group relative bg-primary-800 rounded-2xl overflow-hidden"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="relative h-72 overflow-hidden">
+                  <motion.img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-primary-900 via-primary-900/50 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="inline-block px-3 py-1 bg-accent-500 text-primary-900 text-xs font-bold rounded-full mb-3">
+                    {member.role}
+                  </span>
+                  <h3 className="text-xl font-bold text-white mb-2">{member.name}</h3>
+                  <p className="text-primary-300 text-sm">{member.description}</p>
+                </div>
+              </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        {/* Values Section */}
-        <div className="mt-16 grid md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-sunshine-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-forest-500 mb-2">Passion</h3>
-            <p className="text-gray-600">Our love for cooking is reflected in every dish</p>
-          </div>
+        {/* Values */}
+        <div className="border-t border-primary-700 pt-16">
+          <FadeInView direction="up" className="text-center mb-12">
+            <h3 className="font-display text-3xl font-bold">Our Core Values</h3>
+          </FadeInView>
 
-          <div className="text-center">
-            <div className="w-16 h-16 bg-sunshine-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-forest-500 mb-2">Quality</h3>
-            <p className="text-gray-600">We select only the finest ingredients</p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-sunshine-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-forest-500 mb-2">Family</h3>
-            <p className="text-gray-600">Our team is like a family, united by passion</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {values.map((value, index) => (
+              <FadeInView key={value.title} direction="up" delay={index * 0.1}>
+                <motion.div
+                  className="text-center p-8 bg-primary-800/50 rounded-2xl border border-primary-700 hover:border-accent-500/30 transition-colors"
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="mb-4 flex justify-center">{value.icon}</div>
+                  <h4 className="text-xl font-bold text-white mb-2">{value.title}</h4>
+                  <p className="text-primary-300">{value.description}</p>
+                </motion.div>
+              </FadeInView>
+            ))}
           </div>
         </div>
       </div>

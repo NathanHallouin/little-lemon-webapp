@@ -2,6 +2,14 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Git Workflow
+
+- **Commits propres** : Messages de commit clairs, concis et descriptifs
+- **Gestion des branches** : Utiliser des branches feature/fix/refactor selon les conventions (ex: `feature/add-checkout`, `fix/navbar-responsive`)
+- **Pas de co-auteur** : Ne JAMAIS ajouter de ligne `Co-Authored-By` dans les commits
+- **Pas de mention Claude** : Ne JAMAIS mentionner Claude, AI, ou assistant dans les messages de commit
+- **Package manager** : Utiliser `bun` pour ce projet
+
 ## Project Overview
 
 Little Lemon is a Mediterranean restaurant web application built with React Router 7, TypeScript, and modern web technologies. The app features a fully responsive design, comprehensive accessibility (WCAG 2.1 AA), PWA capabilities, and Redux-powered cart management.

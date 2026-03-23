@@ -1,5 +1,7 @@
-import React from 'react';
-import { menuItems, filterMenuItems, type MenuItem } from '../../data/menuData';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router';
+import { Star } from 'lucide-react';
+import { menuItems, filterMenuItems } from '../../data/menuData';
 
 interface MenuItemsProps {
   selectedCategory?: string;
@@ -7,84 +9,100 @@ interface MenuItemsProps {
   onSearchChange?: (term: string) => void;
 }
 
-/**
- * Menu items component that displays filtered menu items
- * @param selectedCategory - Currently selected category for filtering
- * @param searchTerm - Current search term for filtering
- * @param onSearchChange - Callback function when search term changes
- * @returns Menu items display with filtering and search functionality
- */
-const MenuItems: React.FC<MenuItemsProps> = ({ 
-  selectedCategory = 'all', 
-  searchTerm = '', 
-  onSearchChange 
-}) => {
-  // Use centralized filtering function
+const MenuItems = ({
+  selectedCategory = 'all',
+  searchTerm = '',
+  onSearchChange,
+}: MenuItemsProps) => {
   const filteredItems = filterMenuItems(menuItems, selectedCategory, searchTerm);
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
-        {/* Menu Items */}
-        <div>
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-            Our Menu
-          </h2>
-          <div className="max-w-4xl mx-auto">
+    <section className="py-16 bg-surface-light">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
             {filteredItems.length > 0 ? (
-              filteredItems.map((item) => (
-                <div key={item.id} className="flex items-center gap-6 p-6 mb-4 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-all duration-300 hover:border-orange-200">
-                  <div className="flex-shrink-0">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-20 h-20 rounded-lg object-cover"
+              filteredItems.map((item, index) => (
+                <motion.article
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, delay: index * 0.03 }}
+                  className="group bg-white rounded-2xl overflow-hidden border border-neutral-100 hover:shadow-lg transition-all duration-300"
+                  whileHover={{ y: -4 }}
+                >
+                  {/* Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <motion.img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.4 }}
                     />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="flex items-center gap-3">
-                        <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
-                        {item.isPopular && (
-                          <span className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center">
-                            <span className="mr-1">⭐</span>Popular
-                          </span>
-                        )}
+                    {item.isPopular && (
+                      <div className="absolute top-3 left-3">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 bg-accent-500 text-primary-900 text-xs font-bold rounded-full">
+                          <Star className="w-3 h-3" /> Popular
+                        </span>
                       </div>
-                      <span className="text-lg font-bold text-orange-600">{item.priceFormatted}</span>
+                    )}
+                    <div className="absolute top-3 right-3">
+                      <span className="px-3 py-1.5 bg-white/95 backdrop-blur-sm text-primary-700 font-bold text-sm rounded-full">
+                        {item.priceFormatted}
+                      </span>
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-2">{item.description}</p>
-                    <button className="inline-flex items-center text-orange-600 text-sm font-medium hover:text-orange-700 transition-colors">
-                      Order Now
-                      <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
                   </div>
-                </div>
+
+                  {/* Content */}
+                  <div className="p-5">
+                    <h3 className="font-display text-lg font-semibold text-primary-800 mb-2 group-hover:text-primary-600 transition-colors">
+                      {item.name}
+                    </h3>
+                    <p className="text-neutral-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                      {item.description}
+                    </p>
+                    <Link
+                      to="/order"
+                      className="inline-flex items-center gap-2 text-primary-600 text-sm font-semibold hover:text-secondary-500 transition-colors"
+                    >
+                      <span>Add to Order</span>
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                    </Link>
+                  </div>
+                </motion.article>
               ))
             ) : (
-              <div className="text-center py-12">
-                <div className="mb-4">
-                  <svg className="mx-auto w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="col-span-full text-center py-20"
+              >
+                <div className="w-20 h-20 mx-auto bg-neutral-100 rounded-2xl flex items-center justify-center mb-6">
+                  <svg className="w-10 h-10 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
-                <p className="text-gray-500 text-lg">
+                <p className="text-neutral-600 text-lg mb-4">
                   {searchTerm ? `No dishes found for "${searchTerm}"` : 'No dishes found in this category.'}
                 </p>
                 {searchTerm && (
-                  <button 
+                  <motion.button
                     onClick={() => onSearchChange?.('')}
-                    className="mt-4 text-orange-600 hover:text-orange-700 font-medium"
+                    className="px-6 py-2.5 bg-primary-500 text-white rounded-full font-semibold hover:bg-primary-600 transition-colors"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     Clear search
-                  </button>
+                  </motion.button>
                 )}
-              </div>
+              </motion.div>
             )}
-          </div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

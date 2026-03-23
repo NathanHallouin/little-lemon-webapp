@@ -1,59 +1,87 @@
 @import "tailwindcss";
 
 @theme {
+  /* Typography - Premium restaurant feel */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
 
-  --color-forest-50:  #F2F3F2;
-  --color-forest-100: #DCE1DF;
-  --color-forest-200: #B7C3C0;
-  --color-forest-300: #93A49F;
-  --color-forest-400: #6E867F;
-  --color-forest-500: #495E57; /* Base */
-  --color-forest-600: #3F514B;
-  --color-forest-700: #33403A;
-  --color-forest-800: #252C27;
-  --color-forest-900: #141816;
-  --color-forest-950: #0D0F0D;
+  /* Primary - Deep Forest Green (Sophistication & Nature) */
+  --color-primary-50:  #f0f5f4;
+  --color-primary-100: #d9e5e2;
+  --color-primary-200: #b3cbc5;
+  --color-primary-300: #8db1a8;
+  --color-primary-400: #67978b;
+  --color-primary-500: #495e57;
+  --color-primary-600: #3d4f49;
+  --color-primary-700: #31403b;
+  --color-primary-800: #25302d;
+  --color-primary-900: #19201e;
+  --color-primary-950: #0d1010;
 
-  --color-sunshine-50:  #fdfae7;
-  --color-sunshine-100: #fcf5d0;
-  --color-sunshine-200: #fbf0b8;
-  --color-sunshine-300: #fae997;
-  --color-sunshine-400: #f9e584;
-  --color-sunshine-500: #f4ce14; /* Base #F4CE14 */
-  --color-sunshine-600: #f6d639;
-  --color-sunshine-700: #f4bb14;
-  --color-sunshine-800: #f4a914;
-  --color-sunshine-900: #f49614;
-  --color-sunshine-950: #f42214;
+  /* Accent - Warm Gold (Luxury & Warmth) */
+  --color-accent-50:  #fffef5;
+  --color-accent-100: #fefceb;
+  --color-accent-200: #fdf7d6;
+  --color-accent-300: #fbf0b8;
+  --color-accent-400: #f8e68a;
+  --color-accent-500: #f4ce14;
+  --color-accent-600: #dbb912;
+  --color-accent-700: #b59710;
+  --color-accent-800: #8f760d;
+  --color-accent-900: #6a580a;
+  --color-accent-950: #453a06;
 
-  --color-peach-50:  #fff4ee;
-  --color-peach-100: #fde1d8;
-  --color-peach-200: #fac3b2;
-  --color-peach-300: #f6a48b;
-  --color-peach-400: #f2896b;
-  --color-peach-500: #ee9972; /* Base #EE9972 */
-  --color-peach-600: #e47f5c;
-  --color-peach-700: #cd6748;
-  --color-peach-800: #b85135;
-  --color-peach-900: #8f3a24;
-  --color-peach-950: #6a2819;
+  /* Secondary - Terracotta (Mediterranean warmth) */
+  --color-secondary-50:  #fef7f4;
+  --color-secondary-100: #fdede6;
+  --color-secondary-200: #fad9cc;
+  --color-secondary-300: #f6bfa8;
+  --color-secondary-400: #f0a080;
+  --color-secondary-500: #e8784a;
+  --color-secondary-600: #d4612f;
+  --color-secondary-700: #b04d24;
+  --color-secondary-800: #8c3d1d;
+  --color-secondary-900: #682d16;
+  --color-secondary-950: #441e0f;
 
-  --color-peach-yellow-50:  #ffffff;
-  --color-peach-yellow-100: #fefbf6;
-  --color-peach-yellow-200: #fdf3e5;
-  --color-peach-yellow-300: #fdecd5;
-  --color-peach-yellow-400: #fce8cc;
-  --color-peach-yellow-500: #fbdaab; /* Base #FBDAAB */
-  --color-peach-yellow-600: #e1c499;
-  --color-peach-yellow-700: #c8ae88;
-  --color-peach-yellow-800: #af9877;
-  --color-peach-yellow-900: #968266;
-  --color-peach-yellow-950: #7d6d55;
+  /* Neutral - Warm grays */
+  --color-neutral-50:  #fafaf9;
+  --color-neutral-100: #f5f5f4;
+  --color-neutral-200: #e7e5e4;
+  --color-neutral-300: #d6d3d1;
+  --color-neutral-400: #a8a29e;
+  --color-neutral-500: #78716c;
+  --color-neutral-600: #57534e;
+  --color-neutral-700: #44403c;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1c1917;
+  --color-neutral-950: #0c0a09;
+
+  /* Surface colors */
+  --color-surface-light: #fdfcfa;
+  --color-surface-warm: #faf8f5;
+  --color-surface-cream: #f7f4ef;
 }
 
-/* Styles pour les animations d'accessibilité */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: var(--color-accent-200);
+  color: var(--color-primary-900);
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+}
+
+/* Respect user preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -65,16 +93,11 @@
   }
 }
 
-/* Amélioration de l'accessibilité pour les liens externes */
+/* Hide external link indicators for cleaner UI */
 a[href^="http"]:not([href*="littlelemon.com"])::after {
-  content: " (lien externe)";
-  font-size: 0.875rem;
-  color: #6b7280;
+  content: none;
 }
 
-/* Amélioration de l'accessibilité pour les liens qui ouvrent dans un nouvel onglet */
 a[target="_blank"]::after {
-  content: " (s'ouvre dans un nouvel onglet)";
-  font-size: 0.875rem;
-  color: #6b7280;
+  content: none;
 }

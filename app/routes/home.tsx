@@ -1,6 +1,7 @@
 import type { Route } from "./+types/home";
 import HeroSection from "../components/home/HeroSection"
 import SpecialProducts from "../components/home/SpecialProducts"
+import PageTransition from "../components/ui/PageTransition"
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -39,9 +40,9 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <>
+    <PageTransition>
       <HeroSection />
       <SpecialProducts />
-    </>
+    </PageTransition>
   );
 }

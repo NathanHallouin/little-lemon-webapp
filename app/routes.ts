@@ -5,5 +5,6 @@ export default [
   route("reservations", "routes/reservations.tsx"),
   route("about", "routes/about.tsx"),
   route("menu", "routes/menu.tsx"),
-  route("order", "routes/order.tsx")
+  route("order", "routes/order.tsx"),
+  route("auth/callback", "routes/auth.callback.tsx")
 ] satisfies RouteConfig;

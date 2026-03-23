@@ -19,11 +19,11 @@ export interface Category {
  * Menu categories configuration with icons and display names
  */
 export const categories: Category[] = [
-  { id: 'all', name: 'All Items', icon: '🍽️' },
-  { id: 'starters', name: 'Starters', icon: '🥗' },
-  { id: 'main-courses', name: 'Main Courses', icon: '🍖' },
-  { id: 'desserts', name: 'Desserts', icon: '🍰' },
-  { id: 'drinks', name: 'Drinks', icon: '🥤' },
+  { id: 'all', name: 'All Items' },
+  { id: 'starters', name: 'Starters' },
+  { id: 'main-courses', name: 'Main Courses' },
+  { id: 'desserts', name: 'Desserts' },
+  { id: 'drinks', name: 'Drinks' },
 ];
 
 /**

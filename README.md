@@ -1,250 +1,220 @@
-# Little Lemon Restaurant Web Application
+# Little Lemon Restaurant
 
-A modern, accessible web application for the Little Lemon Mediterranean restaurant in Orléans, France. Built with React, TypeScript, and modern web technologies.
+A modern, full-stack web application for the Little Lemon Mediterranean restaurant. Features online ordering with real-time delivery tracking, table reservations, user authentication, and a Progressive Web App experience.
 
-## 🌟 Features
+![Little Lemon Homepage](docs/screenshots/homepage.png)
 
-- **Fully Accessible**: WCAG 2.1 AA compliant with comprehensive ARIA attributes
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Modern UI/UX**: Beautiful, intuitive interface with smooth animations
-- **Redux State Management**: Centralized cart and application state
-- **Form Validation**: Robust form handling with Yup validation
-- **SEO Optimized**: Complete meta tags and social media optimization
-- **Performance Optimized**: Lazy loading, code splitting, and efficient rendering
+## Features
 
-## 🏗️ Architecture
+### Online Ordering
+- Browse menu with categories (Starters, Mains, Desserts, Drinks)
+- Shopping cart with quantity management
+- **Delivery** with real-time tracking via Stuart API
+- **Pickup** option with estimated ready time
+- Order history for authenticated users
 
-### Core Technologies
-- **React 19** with TypeScript
-- **React Router** for navigation
-- **Redux Toolkit** for state management
-- **Tailwind CSS** for styling
-- **Framer Motion** for animations
-- **Formik & Yup** for form handling
-- **Vite** for build tooling
+### Table Reservations
+- Interactive booking form with date/time selection
+- Party size selection (1-20 guests)
+- Special occasion options (Birthday, Anniversary, Business, etc.)
+- Special requests field
+- Reservation management and cancellation
 
-### Project Structure
-```
-app/
-├── components/          # Reusable UI components
-│   ├── about/          # About page components
-│   ├── cart/           # Shopping cart components
-│   ├── home/           # Home page components
-│   ├── menu/           # Menu page components
-│   ├── root/           # Layout components
-│   └── ui/             # Accessible UI components
-├── data/               # Static data and utilities
-├── providers/          # Context providers
-├── routes/             # Page components
-├── store/              # Redux store configuration
-└── root.tsx           # Main application component
-```
+### Authentication
+- Email/password registration and login
+- Google OAuth integration
+- Facebook OAuth integration
+- Protected routes for orders and reservations
+- User profile management
 
-## 🚀 Getting Started
+### Technical Highlights
+- **PWA Ready**: Installable app with offline capabilities
+- **SSR Enabled**: Server-side rendering for fast initial load
+- **Responsive Design**: Mobile-first approach
+- **Accessibility**: WCAG 2.1 AA compliant
+- **Animations**: Smooth transitions with Framer Motion
+
+## Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Framework | React 19 + React Router 7 (SSR) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4 |
+| State Management | Redux Toolkit |
+| Database & Auth | Supabase |
+| Delivery API | Stuart |
+| Forms | Formik + Yup |
+| Animations | Framer Motion |
+| Icons | Lucide React |
+| Testing | Vitest + Testing Library |
+| Build Tool | Vite |
+
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+
+- Node.js 18+ or Bun
+- A Supabase project ([supabase.com](https://supabase.com))
+- Stuart API credentials (for delivery feature)
 
 ### Installation
+
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/yourusername/little-lemon-webapp.git
 cd little-lemon-webapp
 
 # Install dependencies
+bun install
+# or
 npm install
 
-# Start development server
-npm run dev
-```
-
-### Available Scripts
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run test         # Run tests
-npm run test:ui      # Run tests with UI
-```
-
-## 🎨 Design System
-
-### Color Palette
-- **Primary Green**: `#495e57` (Forest Green)
-- **Secondary Yellow**: `#f4ce14` (Sunshine Yellow)
-- **Accent Orange**: `#ee9972` (Peach)
-- **Neutral Gray**: `#edefee` (Light Gray)
-
-### Typography
-- **Primary Font**: Inter (Google Fonts)
-- **Responsive**: Fluid typography scaling
-- **Accessible**: High contrast ratios
-
-## ♿ Accessibility Features
-
-### ARIA Implementation
-- Complete ARIA labels and descriptions
-- Proper heading hierarchy
-- Focus management and keyboard navigation
-- Screen reader compatibility
-
-### WCAG Compliance
-- **Level AA** compliance
-- Color contrast ratios meet standards
-- Alternative text for all images
-- Form labels and error messaging
-
-### Keyboard Navigation
-- Tab order optimization
-- Focus indicators
-- Skip links for main content
-- Keyboard shortcuts for common actions
-
-## 📱 Responsive Design
-
-### Breakpoints
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
-
-### Features
-- Mobile-first approach
-- Touch-friendly interactions
-- Optimized images and assets
-- Flexible grid layouts
-
-## 🛒 Shopping Cart
-
-### Features
-- Add/remove items
-- Quantity management
-- Real-time total calculation
-- Persistent cart state
-- Checkout integration ready
-
-### State Management
-- Redux Toolkit for cart operations
-- Optimistic updates
-- Error handling
-- Loading states
-
-## 📝 Form Handling
-
-### Reservation System
-- Multi-step form validation
-- Real-time error feedback
-- Accessibility compliance
-- Success/error states
-
-### Validation
-- Client-side validation with Yup
-- Server-side validation ready
-- Custom error messages
-- Field-level validation
-
-## 🧪 Testing
-
-### Test Setup
-- Vitest for unit testing
-- React Testing Library
-- Accessibility testing
-- Component testing
-
-### Running Tests
-```bash
-npm run test         # Run all tests
-npm run test:ui      # Run tests with UI
-npm run test:coverage # Run tests with coverage
-```
-
-## 🚀 Deployment
-
-### Build Process
-```bash
-npm run build        # Create production build
-npm run preview      # Preview production build
+# Copy environment variables
+cp .env.example .env
 ```
 
 ### Environment Variables
+
+Create a `.env` file with the following variables:
+
 ```env
-VITE_API_URL=your_api_url
-VITE_GOOGLE_ANALYTICS_ID=your_ga_id
+# Supabase
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Stuart Delivery API (optional)
+STUART_API_CLIENT_ID=your_stuart_client_id
+STUART_API_CLIENT_SECRET=your_stuart_client_secret
+STUART_API_ENV=sandbox  # or 'production'
 ```
 
-## 📚 Documentation
+### Database Setup
 
-### Code Documentation
-- **JSDoc Comments**: Comprehensive documentation for all complex functions
-- **TypeScript Types**: Full type safety and documentation
-- **Component Props**: Detailed prop interfaces
-- **Function Parameters**: Clear parameter documentation
+Run the SQL schema in your Supabase SQL Editor:
 
-### Key Components
-
-#### AccessibleButton
-```typescript
-/**
- * Accessible button component with comprehensive accessibility features
- * @param children - Button content
- * @param onClick - Click handler function
- * @param type - Button type (button, submit, reset)
- * @param disabled - Whether the button is disabled
- * @param loading - Whether the button is in loading state
- * @param variant - Button style variant
- * @param size - Button size
- * @returns Accessible button component with proper ARIA attributes
- */
+```bash
+# The schema is located at:
+supabase/schema.sql
 ```
 
-#### Cart Management
-```typescript
-/**
- * Redux slice for cart management with add, remove, update, and clear operations
- */
-const cartSlice = createSlice({
-  name: 'cart',
-  initialState,
-  reducers: {
-    /**
-     * Adds an item to the cart or increases quantity if already exists
-     * @param state - Current cart state
-     * @param action - Payload containing item details (without quantity)
-     */
-    addToCart: (state, action: PayloadAction<Omit<CartItem, 'quantity'>>) => {
-      // Implementation
-    }
-  }
-});
+This creates the following tables with Row Level Security:
+- `profiles` - User profiles (auto-created on signup)
+- `orders` - Order history with items and delivery info
+- `reservations` - Table reservations
+
+### OAuth Configuration
+
+Configure OAuth providers in Supabase Dashboard:
+
+1. Go to **Authentication > Providers**
+2. Enable **Google** and add your OAuth credentials
+3. Enable **Facebook** and add your App ID/Secret
+4. Set **Site URL** to your app URL
+5. Add **Redirect URLs**: `http://localhost:5173/auth/callback`
+
+### Development
+
+```bash
+# Start development server
+bun run dev
+# or
+npm run dev
+
+# The app will be available at http://localhost:5173
 ```
 
-## 🤝 Contributing
+### Available Scripts
 
-### Development Guidelines
-1. **Accessibility First**: All components must be accessible
-2. **TypeScript**: Strict typing required
-3. **Documentation**: JSDoc comments for complex functions
-4. **Testing**: Unit tests for new features
-5. **Code Style**: ESLint and Prettier configuration
+| Command | Description |
+|---------|-------------|
+| `bun run dev` | Start development server |
+| `bun run build` | Build for production |
+| `bun run start` | Start production server |
+| `bun run typecheck` | Run TypeScript checks |
+| `bun run test` | Run tests in watch mode |
+| `bun run test:run` | Run tests once |
+| `bun run test:coverage` | Run tests with coverage |
+| `bun run test:accessibility` | Run accessibility tests |
 
-### Pull Request Process
-1. Create feature branch
-2. Implement changes with tests
-3. Update documentation
-4. Submit pull request
-5. Code review and approval
+## Project Structure
 
-## 📄 License
+```
+app/
+├── components/
+│   ├── auth/           # Authentication modal, protected routes
+│   ├── cart/           # Shopping cart sidebar
+│   ├── home/           # Hero, specials, testimonials
+│   ├── menu/           # Menu items, categories, filters
+│   ├── order/          # Checkout, delivery form
+│   ├── reservations/   # Booking form, confirmation
+│   ├── root/           # Navbar, footer, layout
+│   └── ui/             # Reusable UI components
+├── data/               # Menu items, static data
+├── lib/                # Supabase client, database functions, Stuart API
+├── providers/          # Auth, Redux, Loading providers
+├── routes/             # Page components
+├── store/              # Redux store, cart slice
+└── root.tsx            # App shell with providers
+```
+
+## Design System
+
+### Colors
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Primary | `#495E57` | Headers, buttons, navigation |
+| Secondary | `#F4CE14` | Accents, highlights, CTAs |
+| Accent | `#EE9972` | Decorative elements |
+| Neutral | `#EDEFEE` | Backgrounds |
+
+### Typography
+
+- **Display**: Markazi Text (headings)
+- **Body**: Karla (body text)
+
+## Deployment
+
+### Docker
+
+```bash
+# Build the image
+docker build -t little-lemon .
+
+# Run the container
+docker run -p 3000:3000 little-lemon
+```
+
+### Vercel / Netlify
+
+The app is configured for SSR deployment. Make sure to:
+1. Set all environment variables
+2. Configure build command: `bun run build`
+3. Configure start command: `bun run start`
+
+## API Endpoints
+
+The app uses Supabase as the backend. Key database operations:
+
+- `createOrder()` - Create a new order
+- `getUserOrders()` - Get user's order history
+- `createReservation()` - Book a table
+- `getUserReservations()` - Get user's reservations
+- `cancelReservation()` - Cancel a reservation
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- **Design Inspiration**: Mediterranean restaurant aesthetics
-- **Accessibility**: WCAG guidelines and best practices
-- **Performance**: Modern web performance optimization
-- **User Experience**: Intuitive and delightful interactions
-
 ---
 
-**Little Lemon Restaurant** - Bringing Mediterranean flavors to Orléans since 2003
+**Little Lemon** - Mediterranean flavors in Orléans, France

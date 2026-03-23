@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAppSelector } from '../../store/hooks';
 
 export default function CartIcon() {
@@ -5,15 +7,22 @@ export default function CartIcon() {
   const itemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <div className="relative">
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
+    <Link to="/order" className="relative p-2 rounded-lg hover:bg-neutral-100 transition-colors">
+      <svg className="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
       </svg>
-      {itemCount > 0 && (
-        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-          {itemCount}
-        </span>
-      )}
-    </div>
+      <AnimatePresence>
+        {itemCount > 0 && (
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            className="absolute -top-0.5 -right-0.5 bg-secondary-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center"
+          >
+            {itemCount > 9 ? '9+' : itemCount}
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </Link>
   );
 } 

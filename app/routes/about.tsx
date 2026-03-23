@@ -2,6 +2,7 @@ import type { Route } from "./+types/about";
 import AboutHero from "../components/about/AboutHero";
 import OurStory from "../components/about/OurStory";
 import TeamSection from "../components/about/TeamSection";
+import PageTransition from "../components/ui/PageTransition";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -37,10 +38,10 @@ export function meta({}: Route.MetaArgs) {
 
 export default function About() {
   return (
-    <>
+    <PageTransition>
       <AboutHero />
       <OurStory />
       <TeamSection />
-    </>
+    </PageTransition>
   );
 } 

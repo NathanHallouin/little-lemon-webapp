@@ -4,3 +4,11 @@
 # React Router
 /.react-router/
 /build/
+
+# Claude
+CLAUDE.md
+
+# Environment
+.env
+.env.local
+.env.*.local

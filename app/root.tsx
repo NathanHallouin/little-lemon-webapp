@@ -1,5 +1,7 @@
 import {
   isRouteErrorResponse,
+  Links,
+  Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -10,6 +12,7 @@ import NavBar from "./components/root/NavBar"
 import Footer from "./components/root/Footer"
 import ReduxProvider from "./providers/ReduxProvider"
 import { LoadingProvider } from "./providers/LoadingProvider"
+import { AuthProvider } from "./providers/AuthProvider"
 import type { Route } from "./+types/root";
 import "./app.css";
 
@@ -26,7 +29,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap",
   },
   // Favicon et icônes
   { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -107,6 +110,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="format-detection" content="telephone=no" />
         <meta name="theme-color" content="#495e57" />
         <meta name="color-scheme" content="light dark" />
+        <Meta />
+        <Links />
       </head>
       <body>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#495e57] text-white px-4 py-2 rounded z-50">
@@ -156,14 +161,16 @@ export default function App() {
   return (
     <LoadingProvider>
       <ReduxProvider>
-        <DynamicTitle />
-        <div className="min-h-screen flex flex-col">
-          <NavBar />
-          <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
-            <Outlet />
-          </main>
-          <Footer />
-        </div>
+        <AuthProvider>
+          <DynamicTitle />
+          <div className="min-h-screen flex flex-col">
+            <NavBar />
+            <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
+              <Outlet />
+            </main>
+            <Footer />
+          </div>
+        </AuthProvider>
       </ReduxProvider>
     </LoadingProvider>
   );

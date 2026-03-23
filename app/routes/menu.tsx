@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import MenuHero from "../components/menu/MenuHero";
 import MenuCategories from "../components/menu/MenuCategories";
 import MenuItems from "../components/menu/MenuItems";
+import PageTransition from "../components/ui/PageTransition";
 
 interface MetaArgs {
   // Add any meta arguments if needed
@@ -52,19 +53,21 @@ export default function Menu() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <MenuHero />
-      <MenuCategories 
-        onCategoryChange={handleCategoryChange}
-        selectedCategory={selectedCategory}
-        searchTerm={searchTerm}
-        onSearchChange={handleSearchChange}
-      />
-      <MenuItems 
-        selectedCategory={selectedCategory}
-        searchTerm={searchTerm}
-        onSearchChange={handleSearchChange}
-      />
-    </div>
+    <PageTransition>
+      <div className="min-h-screen bg-surface-light">
+        <MenuHero />
+        <MenuCategories
+          onCategoryChange={handleCategoryChange}
+          selectedCategory={selectedCategory}
+          searchTerm={searchTerm}
+          onSearchChange={handleSearchChange}
+        />
+        <MenuItems
+          selectedCategory={selectedCategory}
+          searchTerm={searchTerm}
+          onSearchChange={handleSearchChange}
+        />
+      </div>
+    </PageTransition>
   );
 } 
